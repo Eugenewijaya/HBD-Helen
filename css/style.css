@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Patrick+Hand&display=swap');
+
+body {
+    font-family: 'Fredoka', sans-serif;
+    background: linear-gradient(135deg, #ffe4e1 0%, #ffb6c1 100%);
+    overflow-x: hidden;
+    touch-action: manipulation;
+}
+
+.font-hand {
+    font-family: 'Patrick Hand', cursive;
+}
+
+/* Animations */
+@keyframes bounce-soft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+.animate-bounce-soft {
+    animation: bounce-soft 2s infinite ease-in-out;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}
+.animate-wiggle {
+    animation: wiggle 0.5s infinite ease-in-out;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+.floating-element {
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+    animation: float 10s linear infinite;
+}
+
+/* Section Transitions */
+.section-hidden {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+.section-visible {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    z-index: 10;
+    transition: opacity 0.5s ease-in-out;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Polaroid styling */
+.polaroid {
+    background: #fff;
+    padding: 10px 10px 30px 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    border-radius: 4px;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.polaroid:hover {
+    transform: scale(1.08) rotate(0deg) !important;
+    z-index: 20;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.heart-btn {
+    background: linear-gradient(135deg, #ff477e 0%, #ff758c 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 71, 126, 0.4);
+    transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.heart-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 8px rgba(255, 71, 126, 0.4);
+}
+.heart-btn:hover {
+    box-shadow: 0 6px 20px rgba(255, 71, 126, 0.6);
+}
+
+/* Prank Button container */
+#prank-container {
+    position: relative;
+    width: 100%;
+    height: 300px; /* Space for the button to jump around */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#btn-prank {
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background 0.2s;
+}
+
+/* Custom Range Slider */
+input[type=range] {
+    -webkit-appearance: none;
+    background: transparent;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background: #ff477e;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(255, 71, 126, 0.5);
+    margin-top: -10px;
+    transition: transform 0.1s;
+}
+input[type=range]::-webkit-slider-thumb:active {
+    transform: scale(1.1);
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: #fbcfe8;
+    border-radius: 5px;
+}

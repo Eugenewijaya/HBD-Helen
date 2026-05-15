@@ -46,12 +46,12 @@ function openGift() {
     // Play music (Must be triggered by user click to bypass browser blocks)
     bgMusic.volume = 0.5; // Set volume to 50% so it's not too loud
     bgMusic.play().catch(e => console.log("Audio autoplay prevented."));
-    
+
     // Go to popup
     nextSection('sec-1', 'sec-popup');
-    
+
     // Add lots of confetti emojis temporarily
-    for(let i=0; i<40; i++) setTimeout(createEmoji, i*50);
+    for (let i = 0; i < 40; i++) setTimeout(createEmoji, i * 50);
 }
 
 // --- 4. Quiz Logic ---
@@ -74,7 +74,7 @@ function wrongAnswer(qNum) {
 function nextQuiz(currentStep) {
     playSfx(sfxTada); // Play success sound for correct answer
     wrongAttempts = 0; // Reset setiap kali ganti pertanyaan
-    
+
     if (currentStep < 3) {
         document.getElementById('quiz-' + currentStep).classList.add('hidden');
         document.getElementById('quiz-' + (currentStep + 1)).classList.remove('hidden');
@@ -87,7 +87,7 @@ function nextQuiz(currentStep) {
 function updateSliderText() {
     const val = parseInt(document.getElementById('sayang-slider').value);
     const textEl = document.getElementById('slider-text');
-    
+
     if (val <= 30) {
         textEl.innerText = "Masa cuma segini? Parah ih 😭";
         textEl.style.transform = "scale(0.9)";
@@ -120,15 +120,15 @@ const prankContainer = document.getElementById('prank-container');
 const prankText = document.getElementById('prank-text');
 
 function setupPrankButton() {
-    btnPrank.onclick = function(e) {
+    btnPrank.onclick = function (e) {
         playSfx(sfxPop);
         prankClicks++;
-        
+
         if (prankClicks === 1) {
             prankText.innerText = "Yee meleset! 😝 Ga kena!";
             moveButton();
         } else if (prankClicks === 2) {
-            prankText.innerText = "Kalo dapet, nanti dikasih seblak. Ayo coba lagi! 🏃💨";
+            prankText.innerText = "Kalo dapet, nanti dikasih kopi. Ayo coba lagi! 🏃💨";
             moveButton();
         } else {
             // Success on 3rd click
@@ -137,32 +137,32 @@ function setupPrankButton() {
             btnPrank.style.transform = 'translate(0, 0)'; // reset position softly
             btnPrank.innerText = "Beneran Lanjut ✨";
             btnPrank.classList.add('animate-pulse');
-            
+
             // Change onclick to proceed
-            btnPrank.onclick = function() {
+            btnPrank.onclick = function () {
                 nextSection('sec-prank', 'sec-greeting');
             };
         }
     };
-    
+
     // Add touchmove prevention on the button itself just in case
-    btnPrank.addEventListener('touchstart', function(e) {
-        if(prankClicks < 2) {
+    btnPrank.addEventListener('touchstart', function (e) {
+        if (prankClicks < 2) {
             e.preventDefault(); // prevent touch tap if it's moving
             btnPrank.onclick();
         }
-    }, {passive: false});
+    }, { passive: false });
 }
 
 function moveButton() {
     // Kita buat loncatannya lebih jauh (lebih agresif ngindarnya)
     const maxX = (prankContainer.clientWidth / 2) - 80;
     const maxY = (prankContainer.clientHeight / 2) - 40;
-    
+
     // Mengambil area terluar supaya gesernya kerasa jauh
     const randomX = (Math.random() > 0.5 ? 1 : -1) * (maxX * 0.6 + Math.random() * (maxX * 0.4));
     const randomY = (Math.random() > 0.5 ? 1 : -1) * (maxY * 0.6 + Math.random() * (maxY * 0.4));
-    
+
     btnPrank.style.transform = `translate(${randomX}px, ${randomY}px)`;
 }
 
@@ -175,10 +175,10 @@ const btnGallery = document.getElementById('btn-gallery');
 
 function tapPrayer() {
     if (prayerTaps >= 3) return; // Already opened
-    
+
     playSfx(sfxPop);
     prayerTaps++;
-    
+
     // Add a little pop effect on tap
     prayerBox.style.transform = 'scale(0.95)';
     setTimeout(() => prayerBox.style.transform = 'scale(1)', 100);
@@ -194,7 +194,7 @@ function tapPrayer() {
         prayerBox.classList.add('scale-105', 'bg-white');
         prayerBox.classList.remove('bg-gradient-to-r', 'text-white');
         prayerBox.classList.add('text-gray-800', 'border-2', 'border-pink-300');
-        
+
         prayerCover.style.opacity = '0';
         setTimeout(() => {
             prayerCover.style.display = 'none';
@@ -204,9 +204,9 @@ function tapPrayer() {
         // Show gallery button
         btnGallery.classList.remove('hidden');
         setTimeout(() => btnGallery.classList.remove('opacity-0'), 100);
-        
+
         // Spawn emojis
-        for(let i=0; i<20; i++) setTimeout(createEmoji, i*100);
+        for (let i = 0; i < 20; i++) setTimeout(createEmoji, i * 100);
     }
 }
 
@@ -238,7 +238,7 @@ function closeModal() {
     playSfx(sfxPop);
     const modal = document.getElementById('custom-modal');
     const modalContent = document.getElementById('modal-content');
-    
+
     modalContent.classList.remove('scale-100');
     modalContent.classList.add('scale-90');
     modal.classList.add('opacity-0', 'pointer-events-none');
